@@ -1,1 +1,1 @@
-# SMS-Bomber
+# Sallak-Bomber
