@@ -3,7 +3,6 @@ import threading
 import requests
 import random
 
-#phone = '0687983324' test
 print(r"""
     __    ____   __    __  __  __ __  __ _   __ ______ ______ ____   _____
    / /   / __ \ / /   / / / /_/ // / / // | / //_  __// ____// __ \ / ___/
