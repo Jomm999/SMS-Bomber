@@ -11,9 +11,10 @@ print(r"""
                                                                                               
 
 """)
-#print('Who is your target? Type here: ')
-#phone = input()
-phone = ''
+
+print('Who is your target? Type here: ')
+phone = input()
+#phone = ''
 phone_plus = '+' + phone
 
 def run():
@@ -37,5 +38,9 @@ def run():
 
 		response = requests.post('https://my.xtra.tv/api/signup?lang=uk', data = {'phone': phone_plus}, headers = head)
 		print('XTRA TV: ' + str(response.text))
+
+		"""Call
+		response = requests.get('https://findclone.ru/register', data = {'phone': phone}, headers = head)
+		print('FindClone: ' + str(response.text))"""
 
 run()
